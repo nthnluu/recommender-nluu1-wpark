@@ -96,7 +96,22 @@ public class ListObjsData<T extends IAttributeDatum>
 
     @Override
     public Object mostCommonValue(String ofAttribute) {
-        // TODO: Implement.
-        return null;
+        LinkedList<IAttributeDataset<T>> partitioned = this.partition(ofAttribute);
+
+        int largestDatasetSize = 0;
+        IAttributeDataset<T> largestDataset = null;
+
+        for (IAttributeDataset<T> dataset : partitioned) {
+            if (dataset.size() > largestDatasetSize) {
+                largestDataset = dataset;
+                largestDatasetSize = dataset.size();
+            }
+        }
+
+        if (largestDataset != null) {
+            return largestDataset.getSharedValue(ofAttribute);
+        } else {
+            throw new RuntimeException("We couldn't find values for the specified attribute!");
+        }
     }
 }

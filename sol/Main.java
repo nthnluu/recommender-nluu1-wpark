@@ -41,12 +41,12 @@ public class Main {
         TreeGenerator<SampleRow> generator = new TreeGenerator<SampleRow>(dataset);
 
 
-
-        System.out.println(dataset.partition("color").get(0).getAttributes());
-        System.out.println(dataset.allSameValue("color"));
-        System.out.println(dataset.size());
-        System.out.println(dataset.partition("color").get(0).allSameValue("color"));
-        System.out.println(generator.buildClassifier("color"));
-        System.out.println(sampleTree.lookupDecision(row));
+        System.out.println(dataset.mostCommonValue("color"));
+//        System.out.println(dataset.partition("color").get(0).getAttributes());
+//        System.out.println(dataset.allSameValue("color"));
+//        System.out.println(dataset.size());
+//        System.out.println(dataset.partition("color").get(0).allSameValue("color"));
+//        System.out.println(generator.buildClassifier("color"));
+//        System.out.println(sampleTree.lookupDecision(row));
     }
 }
