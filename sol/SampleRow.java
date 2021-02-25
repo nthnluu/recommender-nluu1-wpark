@@ -6,9 +6,9 @@ public class SampleRow implements IAttributeDatum {
     String color;
     boolean highFiber;
 
-    public SampleRow(String color) {
+    public SampleRow(String color, boolean highFiber) {
         this.color = color;
-        this.highFiber = true;
+        this.highFiber = highFiber;
     }
 
     @Override

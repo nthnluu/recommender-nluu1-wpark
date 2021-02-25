@@ -16,7 +16,7 @@ public class Main {
         edges1.add(sampleEdge1);
         INode sampleTree = new Node("highFiber", edges1);
 
-        Edge sampleEdge2 = new Edge("green", sampleLeaf1);
+        Edge sampleEdge2 = new Edge("green", sampleLeaf2);
         Edge sampleEdge3 = new Edge("blue", sampleTree);
 
         LinkedList<Edge> edges = new LinkedList<>();
@@ -26,8 +26,24 @@ public class Main {
         INode sampleTree1 = new Node("color", edges);
 
 
-        SampleRow row = new SampleRow("blue");
+        SampleRow row = new SampleRow("blue", true);
+        LinkedList<SampleRow> rows = new LinkedList<>();
+        rows.add(row);
 
+        SampleRow row1 = new SampleRow("blue", true);
+
+        rows.add(row);
+
+        LinkedList<String> attributes = new LinkedList<>();
+        attributes.add("color");
+        attributes.add("highFiber");
+        ListObjsData<SampleRow> dataset = new ListObjsData<SampleRow>(attributes, rows);
+        TreeGenerator<SampleRow> generator = new TreeGenerator<SampleRow>(dataset);
+
+
+
+        System.out.println(dataset.partition("color").get(0).getAttributes());
+        System.out.println(generator.buildClassifier("color"));
         System.out.println(sampleTree.lookupDecision(row));
     }
 }

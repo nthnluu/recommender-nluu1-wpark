@@ -31,6 +31,22 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
     @Override
     public INode buildClassifier(String targetAttr) {
         // TODO: Implement.
+        LinkedList<String> attributes = new LinkedList<>();
+
+        for (String attribute : dataset.getAttributes()) {
+            if (!attribute.equals(targetAttr)) {
+                attributes.add(attribute);
+            }
+        }
+
+        while (attributes.size() > 0) {
+            String currAttribute = attributes.pop();
+            System.out.println(currAttribute);
+        }
+
+        System.out.println(attributes);
+
+        dataset.getAttributes();
         return null;
     }
 
