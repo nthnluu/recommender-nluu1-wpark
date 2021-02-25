@@ -55,22 +55,33 @@ public class ListObjsData<T extends IAttributeDatum>
 
     @Override
     public LinkedList<IAttributeDataset<T>> partition(String onAttribute) {
-        LinkedList<T> rows = this.rows;
+        LinkedList<T> rows = new LinkedList<>(this.rows);
         LinkedList<IAttributeDataset<T>> result = new LinkedList<>();
 
         while (rows.size() > 0) {
+            // Create a new list to hold the rows with matching attribute values
             LinkedList<T> newRows = new LinkedList<>();
+
+            // Pop a row off the rows list
             T currRow = rows.pop();
+
+            // Add the currRow to the newRows list
             newRows.add(currRow);
+
+            // Find all rows with matching attribute values to currRow
             for (T row : rows) {
                 if (row.getValueOf(onAttribute).equals(currRow.getValueOf(onAttribute))) {
+                    // Add row to newRows and remove it from the rows to consider
                     newRows.add(row);
                     rows.remove(row);
                 }
             }
 
-            LinkedList<String> newAttributes = this.attributes;
+            // Remove the current attribute from the related attributes
+            LinkedList<String> newAttributes = new LinkedList<>(this.attributes);
             newAttributes.removeIf(s -> s.equals(onAttribute));
+
+            // Create a new dataset to hold the newly partitioned rows
             ListObjsData<T> newDataset = new ListObjsData<>(newAttributes, newRows);
             result.add(newDataset);
         }

@@ -43,6 +43,9 @@ public class Main {
 
 
         System.out.println(dataset.partition("color").get(0).getAttributes());
+        System.out.println(dataset.allSameValue("color"));
+        System.out.println(dataset.size());
+        System.out.println(dataset.partition("color").get(0).allSameValue("color"));
         System.out.println(generator.buildClassifier("color"));
         System.out.println(sampleTree.lookupDecision(row));
     }
