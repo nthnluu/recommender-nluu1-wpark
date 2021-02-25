@@ -45,10 +45,9 @@ public class ListObjsData<T extends IAttributeDatum>
     @Override
     public LinkedList<IAttributeDataset<T>> partition(String onAttribute) {
         LinkedList<T> rows = new LinkedList<>(this.rows);
-        LinkedList<T> removedRows = new LinkedList<>();
         LinkedList<IAttributeDataset<T>> result = new LinkedList<>();
 
-        while (removedRows.size() != rows.size()) {
+        while (rows.size() > 0) {
             // Create a new list to hold the rows with matching attribute values
             LinkedList<T> newRows = new LinkedList<>();
 
@@ -59,16 +58,20 @@ public class ListObjsData<T extends IAttributeDatum>
             newRows.add(currRow);
 
             // Find all rows with matching attribute values to currRow
-            for (T row : rows) {
-                if (!removedRows.contains(row)) {
-                    if (row.getValueOf(onAttribute).equals(currRow.getValueOf(onAttribute))) {
-                        // Add row to newRows and remove it from the rows to consider
-                        newRows.add(row);
-                        removedRows.add(row);
-//                        rows.remove(row);
-                    }
+            rows.removeIf(row -> {
+                if (row.getValueOf(onAttribute).equals(currRow.getValueOf(onAttribute))) {
+                    newRows.add(row);
+                    return true;
                 }
-            }
+                return false;
+            });
+//            for (T row : rows) {
+//                if () {
+//                    // Add row to newRows and remove it from the rows to consider
+//                    newRows.add(row);
+//                    rows.remove(row);
+//                }
+//            }
 
             // Remove the current attribute from the related attributes
             LinkedList<String> newAttributes = new LinkedList<>(this.attributes);
