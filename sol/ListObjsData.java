@@ -18,8 +18,9 @@ public class ListObjsData<T extends IAttributeDatum>
 
     /**
      * Constructor for the ListObjsData class
+     *
      * @param attributes - a list of valid attributes for the T object
-     * @param rows - a list of objects (rows)
+     * @param rows       - a list of objects (rows)
      */
     public ListObjsData(LinkedList<String> attributes, LinkedList<T> rows) {
         this.rows = rows;
@@ -28,19 +29,27 @@ public class ListObjsData<T extends IAttributeDatum>
 
     @Override
     public LinkedList<String> getAttributes() {
-        // TODO: Implement.
         return this.attributes;
     }
 
     @Override
     public boolean allSameValue(String ofAttribute) {
         // TODO: Implement.
-        return false;
+
+        boolean res = true;
+
+        for (T row : this.rows) {
+            if (this.rows.getFirst().getValueOf(ofAttribute) != row.getValueOf(ofAttribute)) {
+                res = false;
+                break;
+            }
+        }
+
+        return res;
     }
 
     @Override
     public int size() {
-        // TODO: Implement.
         return rows.size();
     }
 
@@ -53,7 +62,7 @@ public class ListObjsData<T extends IAttributeDatum>
             LinkedList<T> newRows = new LinkedList<>();
             T currRow = rows.pop();
             newRows.add(currRow);
-            for (T row: rows) {
+            for (T row : rows) {
                 if (row.getValueOf(onAttribute).equals(currRow.getValueOf(onAttribute))) {
                     newRows.add(row);
                     rows.remove(row);
@@ -71,8 +80,7 @@ public class ListObjsData<T extends IAttributeDatum>
 
     @Override
     public Object getSharedValue(String ofAttribute) {
-        // TODO: Implement.
-        return null;
+        return this.rows.getFirst().getValueOf(ofAttribute);
     }
 
     @Override
