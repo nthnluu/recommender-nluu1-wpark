@@ -17,5 +17,6 @@ public class Leaf implements INode {
 
     @Override
     public void printNode(String leadspace) {
+        System.out.println(value);
     }
 }

@@ -16,44 +16,51 @@ import java.util.Random;
  */
 public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
     IAttributeDataset<T> dataset;
+    INode decisionTree = null;
+
     /**
      * Constructor for this class.
      *
      * @param initTrainingData - IAttributeDataset of the data table
      */
     public TreeGenerator(IAttributeDataset<T> initTrainingData) {
-        // TODO: Implement.
         this.dataset = initTrainingData;
     }
 
 
+    private INode generateTree(IAttributeDataset<T> dataset, String targetAttribute) {
+        if (dataset.getAttributes().size() > 0) {
+            // more attributes besides the target
+            String attrToConsider = dataset.getAttributes().getFirst();
+            LinkedList<IAttributeDataset<T>> subsets = dataset.partition(attrToConsider);
+            LinkedList<Edge> edges = new LinkedList<>();
+
+            for (IAttributeDataset<T> subset : subsets) {
+                Edge newEdge = new Edge(subset.getSharedValue(attrToConsider), this.generateTree(subset, targetAttribute));
+                edges.add(newEdge);
+            }
+
+            return new Node(attrToConsider, edges);
+        } else {
+            // leaf
+            return new Leaf(dataset.mostCommonValue(targetAttribute));
+        }
+    }
 
     @Override
     public INode buildClassifier(String targetAttr) {
-        // TODO: Implement.
-        LinkedList<String> attributes = new LinkedList<>();
-
-        for (String attribute : dataset.getAttributes()) {
-            if (!attribute.equals(targetAttr)) {
-                attributes.add(attribute);
-            }
-        }
-
-        while (attributes.size() > 0) {
-            String currAttribute = attributes.pop();
-            System.out.println(currAttribute);
-        }
-
-        System.out.println(attributes);
-
-        dataset.getAttributes();
-        return null;
+        INode newTree = this.generateTree(this.dataset, targetAttr);
+        this.decisionTree = newTree;
+        return this.decisionTree;
     }
 
     @Override
     public Object lookupRecommendation(IAttributeDatum forVals) {
-        // TODO: Implement.
-        return null;
+        if (this.decisionTree != null) {
+            return this.decisionTree.lookupDecision(forVals);
+        } else {
+            throw new RuntimeException("No tree created yet! RUN buildClassifier() first!");
+        }
     }
 
     @Override
