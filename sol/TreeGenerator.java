@@ -38,8 +38,6 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
             // more attributes besides the target
             String attrToConsider = attributesToConsider.getFirst();
             LinkedList<IAttributeDataset<T>> subsets = dataset.partition(attrToConsider);
-            System.out.println(attrToConsider);
-            System.out.println(subsets);
             LinkedList<Edge> edges = new LinkedList<>();
 
             for (IAttributeDataset<T> subset : subsets) {

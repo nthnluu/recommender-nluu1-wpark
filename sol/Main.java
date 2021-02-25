@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         LinkedList<SampleRow> rows = new LinkedList<>();
 
-        SampleRow iPhone8 = new SampleRow("iPhone 8", "Touch ID", true, true);
+        SampleRow iPhone8 = new SampleRow("iPhone 8", "Touch ID", false, true);
         rows.add(iPhone8);
 
         SampleRow iPhone8Plus = new SampleRow("iPhone 8 Plus", "Touch ID", true, true);

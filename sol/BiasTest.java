@@ -52,7 +52,7 @@ public class BiasTest {
         }
 
         // TODO : Uncomment the following line.
-        // BiasTest.candidates = new ListObjsData<Candidate>(canAttr, allCandidates);
+         BiasTest.candidates = new ListObjsData<Candidate>(canAttr, allCandidates);
     }
 
     /**
