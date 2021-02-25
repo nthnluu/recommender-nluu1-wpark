@@ -30,9 +30,10 @@ public class Main {
         LinkedList<SampleRow> rows = new LinkedList<>();
         rows.add(row);
 
-        SampleRow row1 = new SampleRow("blue", true);
+        SampleRow row1 = new SampleRow("green", true);
 
         rows.add(row);
+        rows.add(row1);
 
         LinkedList<String> attributes = new LinkedList<>();
         attributes.add("color");
@@ -41,8 +42,8 @@ public class Main {
         TreeGenerator<SampleRow> generator = new TreeGenerator<SampleRow>(dataset);
 
 
-        System.out.println(dataset.mostCommonValue("color"));
-//        System.out.println(dataset.partition("color").get(0).getAttributes());
+        System.out.println(dataset.partition("color").size());
+        System.out.println(dataset.partition("color").get(0).allSameValue("color"));
 //        System.out.println(dataset.allSameValue("color"));
 //        System.out.println(dataset.size());
 //        System.out.println(dataset.partition("color").get(0).allSameValue("color"));

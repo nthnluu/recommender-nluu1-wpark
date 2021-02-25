@@ -34,18 +34,7 @@ public class ListObjsData<T extends IAttributeDatum>
 
     @Override
     public boolean allSameValue(String ofAttribute) {
-        // TODO: Implement.
-
-        boolean res = true;
-
-        for (T row : this.rows) {
-            if (this.rows.getFirst().getValueOf(ofAttribute) != row.getValueOf(ofAttribute)) {
-                res = false;
-                break;
-            }
-        }
-
-        return res;
+        return this.partition(ofAttribute).size() == 1;
     }
 
     @Override
@@ -96,11 +85,14 @@ public class ListObjsData<T extends IAttributeDatum>
 
     @Override
     public Object mostCommonValue(String ofAttribute) {
+        // Partition the dataset with the target attribute
         LinkedList<IAttributeDataset<T>> partitioned = this.partition(ofAttribute);
 
+        // Keep track of the largest dataset size and the largest dataset
         int largestDatasetSize = 0;
         IAttributeDataset<T> largestDataset = null;
 
+        // Find the largest dataset
         for (IAttributeDataset<T> dataset : partitioned) {
             if (dataset.size() > largestDatasetSize) {
                 largestDataset = dataset;
@@ -109,6 +101,7 @@ public class ListObjsData<T extends IAttributeDatum>
         }
 
         if (largestDataset != null) {
+            // Return the common value for the given attribute of the largest dataset
             return largestDataset.getSharedValue(ofAttribute);
         } else {
             throw new RuntimeException("We couldn't find values for the specified attribute!");
