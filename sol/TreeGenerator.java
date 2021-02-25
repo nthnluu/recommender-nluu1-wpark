@@ -29,10 +29,17 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
 
 
     private INode generateTree(IAttributeDataset<T> dataset, String targetAttribute) {
-        if (dataset.getAttributes().size() > 0) {
+        // Remove the target attribute from the dataset's attributes to consider
+        LinkedList<String> attributesToConsider = new LinkedList<>(dataset.getAttributes());
+        attributesToConsider.removeIf(s -> s.equals(targetAttribute));
+
+        // Check if there are attributes to consider
+        if (attributesToConsider.size() > 0) {
             // more attributes besides the target
-            String attrToConsider = dataset.getAttributes().getFirst();
+            String attrToConsider = attributesToConsider.getFirst();
             LinkedList<IAttributeDataset<T>> subsets = dataset.partition(attrToConsider);
+            System.out.println(attrToConsider);
+            System.out.println(subsets);
             LinkedList<Edge> edges = new LinkedList<>();
 
             for (IAttributeDataset<T> subset : subsets) {
@@ -42,7 +49,7 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
 
             return new Node(attrToConsider, edges);
         } else {
-            // leaf
+            // return leaf if no attributes left
             return new Leaf(dataset.mostCommonValue(targetAttribute));
         }
     }
@@ -65,6 +72,6 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
 
     @Override
     public void printTree() {
-        // TODO: Implement.
+        this.decisionTree.printNode("");
     }
 }

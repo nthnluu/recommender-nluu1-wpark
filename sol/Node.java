@@ -31,12 +31,11 @@ public class Node implements INode {
 
     @Override
     public void printNode(String leadspace) {
-//        System.out.println(attribute);
-//
-//        for (Edge edge: edges) {
-//            edge.descendent.printNode();
-//        }
+        System.out.println(leadspace + "|| Attribute:  " + attribute + "||");
 
-
+        for (Edge edge: edges) {
+            System.out.println(leadspace + "(" + edge.value + ")" + "----");
+            edge.descendent.printNode(leadspace.concat("         ").concat("|____"));
+        }
     }
 }
