@@ -15,7 +15,7 @@ import java.util.Random;
  * (like src.Vegetable)
  */
 public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
-
+    IAttributeDataset<T> dataset;
     /**
      * Constructor for this class.
      *
@@ -23,7 +23,10 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
      */
     public TreeGenerator(IAttributeDataset<T> initTrainingData) {
         // TODO: Implement.
+        this.dataset = initTrainingData;
     }
+
+
 
     @Override
     public INode buildClassifier(String targetAttr) {

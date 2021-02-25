@@ -3,6 +3,7 @@ package sol;
 
 import src.IAttributeDatum;
 
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class Candidate implements IAttributeDatum {
