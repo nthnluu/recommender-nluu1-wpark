@@ -35,17 +35,30 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
 
         // Check if there are attributes to consider
         if (attributesToConsider.size() > 0) {
-            // more attributes besides the target
+            // Get the next attribute to consider
             String attrToConsider = attributesToConsider.getFirst();
+
+            // Partition dataset based on current attribute
             LinkedList<IAttributeDataset<T>> subsets = dataset.partition(attrToConsider);
             LinkedList<Edge> edges = new LinkedList<>();
 
+            // For each subset, generate edges
             for (IAttributeDataset<T> subset : subsets) {
-                Edge newEdge = new Edge(subset.getSharedValue(attrToConsider), this.generateTree(subset, targetAttribute));
+                Edge newEdge = null;
+
+                if (subset.allSameValue(targetAttribute)) {
+                    // Subset has all the same value for the target attribute, add leaf
+                    newEdge = new Edge(subset.getSharedValue(attrToConsider), new Leaf(subset.getSharedValue(targetAttribute)));
+                } else {
+                    // Create edge based on common value in subset, set descendent to generated tree based on subset
+                    newEdge = new Edge(subset.getSharedValue(attrToConsider), this.generateTree(subset, targetAttribute));
+                }
+
+                // Add edge to edge list
                 edges.add(newEdge);
             }
 
-            return new Node(attrToConsider, edges);
+            return new Node<T>(attrToConsider, edges, dataset);
         } else {
             // return leaf if no attributes left
             return new Leaf(dataset.mostCommonValue(targetAttribute));

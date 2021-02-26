@@ -65,13 +65,6 @@ public class ListObjsData<T extends IAttributeDatum>
                 }
                 return false;
             });
-//            for (T row : rows) {
-//                if () {
-//                    // Add row to newRows and remove it from the rows to consider
-//                    newRows.add(row);
-//                    rows.remove(row);
-//                }
-//            }
 
             // Remove the current attribute from the related attributes
             LinkedList<String> newAttributes = new LinkedList<>(this.attributes);

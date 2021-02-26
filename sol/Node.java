@@ -1,18 +1,21 @@
 package sol;
 
+import src.IAttributeDataset;
 import src.IAttributeDatum;
 import src.INode;
 
 import java.util.LinkedList;
 
-public class Node implements INode {
+public class Node<T extends IAttributeDatum> implements INode {
     String attribute;
     LinkedList<Edge> edges;
+    public IAttributeDataset<T> subset;
 
 
-    public Node(String attr, LinkedList<Edge> edges) {
+    public Node(String attr, LinkedList<Edge> edges, IAttributeDataset<T> subset) {
         this.attribute = attr;
         this.edges = edges;
+        this.subset = subset;
     }
 
     @Override
@@ -25,17 +28,17 @@ public class Node implements INode {
             }
         }
 
-        // TODO: return the most common value, the attribute wasn't on an edge
-        return null;
+        // return the most common value, the attribute wasn't on an edge
+        return this.subset.mostCommonValue(this.attribute);
     }
 
     @Override
     public void printNode(String leadspace) {
-        System.out.println(leadspace + "[Attribute:  " + attribute + "]");
+        System.out.println(leadspace + "[Attribute " + this.subset.size() + " rows: " + attribute + "]");
 
         for (Edge edge: edges) {
-            System.out.println(leadspace + "(" + edge.value + ")" + "----");
-            edge.descendent.printNode(leadspace.concat("         ").concat("|____"));
+            System.out.println(leadspace + "(" + edge.value + ")");
+            edge.descendent.printNode(leadspace.concat("         "));
         }
     }
 }

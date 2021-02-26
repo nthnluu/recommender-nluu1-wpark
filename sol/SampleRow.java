@@ -3,32 +3,33 @@ package sol;
 import src.IAttributeDatum;
 
 public class SampleRow implements IAttributeDatum {
-    String modelName;
-    String authMethod;
-    boolean isPlus;
-    boolean hasHomeButton;
-    boolean hasFaceId;
+    String name;
+    String color;
+    boolean lowCarb;
+    boolean highFiber;
+    boolean likeToEat;
 
-    public SampleRow(String modelName, String authMethod, boolean isPlus, boolean hasHomeButton) {
-        this.modelName = modelName;
-        this.authMethod = authMethod;
-        this.isPlus = isPlus;
-        this.hasHomeButton = hasHomeButton;
+    public SampleRow(String name, String color, boolean lowCarb, boolean highFiber, boolean likeToEat) {
+        this.name = name;
+        this.color = color;
+        this.lowCarb = lowCarb;
+        this.highFiber = highFiber;
+        this.likeToEat = likeToEat;
     }
 
     @Override
     public Object getValueOf(String attributeName) {
         Object val;
-        if ("authMethod".equals(attributeName)) {
-            val = this.authMethod;
-        } else if ("modelName".equals(attributeName)) {
-            val = this.modelName;
-        } else if ("isPlus".equals(attributeName)) {
-            val = this.isPlus;
-        } else if ("hasHomeButton".equals(attributeName)) {
-            val = this.hasHomeButton;
-        } else if ("hasFaceId".equals(attributeName)) {
-            val = this.hasFaceId;
+        if ("name".equals(attributeName)) {
+            val = this.name;
+        } else if ("color".equals(attributeName)) {
+            val = this.color;
+        } else if ("lowCarb".equals(attributeName)) {
+            val = this.lowCarb;
+        } else if ("highFiber".equals(attributeName)) {
+            val = this.highFiber;
+        } else if ("likeToEat".equals(attributeName)) {
+            val = this.likeToEat;
         } else {
             val = null;
         }
