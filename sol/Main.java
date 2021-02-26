@@ -21,7 +21,6 @@ public class Main {
         rows.add(lettuce);
 
         LinkedList<String> attributes = new LinkedList<>();
-//        attributes.add("name");
         attributes.add("color");
         attributes.add("lowCarb");
         attributes.add("highFiber");
@@ -33,5 +32,6 @@ public class Main {
 
         generator.buildClassifier("likeToEat");
         generator.printTree();
+        System.out.println(generator.lookupRecommendation(carrot));
     }
 }

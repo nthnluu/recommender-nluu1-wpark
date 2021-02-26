@@ -37,7 +37,7 @@ public class Node<T extends IAttributeDatum> implements INode {
         System.out.println(leadspace + "[Attribute " + this.subset.size() + " rows: " + attribute + "]");
 
         for (Edge edge: edges) {
-            System.out.println(leadspace + "(" + edge.value + ")");
+            System.out.println(leadspace + "--> (" + edge.value + ")");
             edge.descendent.printNode(leadspace.concat("         "));
         }
     }
