@@ -118,8 +118,8 @@ public class Testing {
     }
 
     public void testGetAttributes(Tester t) {
-        ListObjsData data = setupBasicDataset();
-        ListObjsData emptyData = setupEmptyDataset();
+        ListObjsData<SampleRow> data = setupBasicDataset();
+        ListObjsData<SampleRow> emptyData = setupEmptyDataset();
         //tests on full dataset
         t.checkExpect(data.getAttributes(), setupAttributeList());
         //tests on empty dataset
@@ -127,9 +127,9 @@ public class Testing {
     }
 
     public void testAllSameValue(Tester t) {
-        ListObjsData data = setupBasicDataset();
-        ListObjsData emptyData = setupEmptyDataset();
-        ListObjsData sameData = setupSameDataset();
+        ListObjsData<SampleRow> data = setupBasicDataset();
+        ListObjsData<SampleRow> emptyData = setupEmptyDataset();
+        ListObjsData<SampleRow> sameData = setupSameDataset();
         //tests on dataset of differing values for lowCarb
         t.checkExpect(data.allSameValue("lowCarb"), false);
         //tests on empty dataset
@@ -139,8 +139,8 @@ public class Testing {
     }
 
     public void testSize(Tester t) {
-        ListObjsData data = setupBasicDataset();
-        ListObjsData emptyData = setupEmptyDataset();
+        ListObjsData<SampleRow> data = setupBasicDataset();
+        ListObjsData<SampleRow> emptyData = setupEmptyDataset();
         //test on full dataset
         t.checkExpect(data.size(), 5);
         //test on empty dataset
@@ -172,8 +172,8 @@ public class Testing {
         LinkedList<IAttributeDataset> result = new LinkedList<>();
         result.add(dataset);
         result.add(dataset1);
-        ListObjsData data = setupBasicDataset();
-        ListObjsData data1 = setupEmptyDataset();
+        ListObjsData<SampleRow> data = setupBasicDataset();
+        ListObjsData<SampleRow> data1 = setupEmptyDataset();
         //tests on full dataset
         t.checkExpect(data.partition("lowCarb"), result);
         //tests on empty dataset
@@ -181,8 +181,8 @@ public class Testing {
     }
 
     public void testGetSharedValue(Tester t) {
-        ListObjsData data = setupBasicDataset();
-        ListObjsData emptyData = setupEmptyDataset();
+        ListObjsData<SampleRow> data = setupBasicDataset();
+        ListObjsData<SampleRow> emptyData = setupEmptyDataset();
         //tests on full dataset
         t.checkExpect(data.getSharedValue("lowCarb"), true);
         //tests on empty dataset
@@ -190,9 +190,9 @@ public class Testing {
     }
 
     public void testMostCommonValue(Tester t) {
-        ListObjsData data = setupBasicDataset();
-        ListObjsData emptyData = setupEmptyDataset();
-        ListObjsData equalData = setupEqualDataset();
+        ListObjsData<SampleRow> data = setupBasicDataset();
+        ListObjsData<SampleRow> emptyData = setupEmptyDataset();
+        ListObjsData<SampleRow> equalData = setupEqualDataset();
         //tests on full dataset
         t.checkExpect(data.mostCommonValue("lowCarb"), true);
         //tests on empty dataset
