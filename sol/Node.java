@@ -27,26 +27,27 @@ public class Node<T extends IAttributeDatum> implements INode {
     @Override
     public Object lookupDecision(IAttributeDatum attrVals) {
         Object attrVal = attrVals.getValueOf(this.attribute);
-        Object matchingEdge = null;
-        Object commonEdge = null;
+        Object match = null;
+        Object common = null;
 
         for (Edge edge : edges) {
             // Find the edge with the matching attribute value
             if (edge.value.equals(attrVal)) {
-                matchingEdge = edge.descendent.lookupDecision(attrVals);
+                match = edge.descendent.lookupDecision(attrVals);
             }
 
             // find edge that matches the most common value for this attribute
             if (edge.value.equals(this.subset.mostCommonValue(this.attribute))) {
-                commonEdge = edge.descendent.lookupDecision(attrVals);
+                common = edge.descendent.lookupDecision(attrVals);
             }
         }
 
-        // Return the matching edge's value if found, otherwise return the common edge's value
-        if (matchingEdge != null) {
-            return matchingEdge;
+        // Return the value from the matching edge if found,
+        // otherwise follow the edge with the most common attribute value as a fallback
+        if (match != null) {
+            return match;
         } else {
-            return commonEdge;
+            return common;
         }
     }
 
