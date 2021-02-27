@@ -3,14 +3,17 @@ Group Members : William Park, Ethan Kim, Nathan Luu
 Subgroup 1 : William Park, Nathan Luu
 Subgroup 2 : Ethan Kim
 
-Our code uses machine learning that would produce a decision tree to summarize what we prefer.
-For our tests, we used the vegetable examples. The decisions tree would have a node that does not have a leaf has
-an attribute, the same attribute arises once, the node has edges, and there will be the predicated value for one
-attribute. Our ListObjsData class would hold our dataset where we would have methods to use the dataset. We have
-attributes to get the attributes (getAttribute), get the same value (allSameValue), get the size (size), split the
-dataset into two subsets based on the attribute that we decided on, etc. This class would be used to produce the
-dataset that would be used in the TreeGenerator class. The TreeGenerator class would generate a tree. The TreeGenerator
-class would use a Node and Leaf classes in order to generate the tree.
+Our code uses decision trees as a form of machine learning to make predictions of our preferences. For our tests, we used
+the vegetable examples. The decision tree has nodes that represent attributes (except the attribute we are trying to
+predict) of the dataset, and edges representing possible values for those attributes. Each attribute is only considered
+once along each path of the tree, and once there are no attributes left to consider, we terminate the tree with a leaf
+representing the predicted value. Our ListObjsData class is responsible for holding the rows of our dataset (represented
+by classes that implement the IAttributeDatum class), a LinkedList of possible attributes to consider, and methods we
+want to be able to call on the dataset-level. We have getter methods that return a list of possible attributes to consider
+(getAttributes), the common value of a column (assuming they all have the same value), the number of rows (size), and a
+method that splits the dataset into subsets containing common values for a given attribute. Our TreeGenerator class is
+responsible for taking in our dataset (represented by ListObjsData) and recursively generating a decision tree based on
+the attributes of the dataset.
 
 1. The narrowing of the application pool shows bias as there will be a strong focus on the candidates who demonstrate
 similar characteristics to previous hires. This is important to know because these algorithms can end up perpetrating
