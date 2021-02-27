@@ -12,35 +12,37 @@ dataset into two subsets based on the attribute that we decided on, etc. This cl
 dataset that would be used in the TreeGenerator class. The TreeGenerator class would generate a tree. The TreeGenerator
 class would use a Node and Leaf classes in order to generate the tree.
 
-1. The narrowing of the application pool shows bias as there will be  a strong focus on the strongest of candidates.
-This is important to know because once an employer hires an application the algorithm that they use would use this pick
-to show other candidates of similar qualifications. This would show favoritism to candidates and not give a chance to
-other candidates and not considering the other candidates at all. Of course, there should be a cutoff but using machine
- learning by adapting the algorithm to show candidates most similar to the already hired would not be a good unbiased
- opinions. This is interesting as it says in the the article that these are "old techniques dressed up in new
- technology". Bias still exists even though it has turned into a code. Another thought that I have is the equality
-  initiative. Even though this is an act to hire more diverse peoples, I do think it has some bias towards the people
-  who are not as qualified as other people.
+1. The narrowing of the application pool shows bias as there will be a strong focus on the candidates who demonstrate
+similar characteristics to previous hires. This is important to know because these algorithms can end up perpetrating
+the historical bias companies are actively working to remedy. This means that candidates that don't have qualities that
+resemble those of the historical hiring pool are not given a chance to even be considered by a human. Of course, there
+should be a cutoff, and the sheer amount of applications being submitted means that some narrowing down must occur, but
+using machine learning by adapting the algorithm to show candidates most similar to the already hired would not be a good
+unbiased approach. This is especially dangerous because unlike with human review, applicants are being biased against in
+a relatively invisible way. As it says in the article, these are "old techniques dressed up in new technology." Since
+the algorithm's designers failed to account for the historical trends in the training data, bias still exists despite
+the fact the algorithm is doing what it's supposed to do.
 
 
 2.
 data/train_candidates_unequal.csv
-- Female 0.03| Male 0.3
-- Female 0.04| Male 0.14
-- Female 0.015| Male 0.23
-- Female 0.09| Male 0.26
-- Female 0.08| Male 0.18
+- Female 0.12 | Male 0.22
+- Female 0.09 | Male 0.35
+- Female 0.13 | Male 0.23
+- Female 0.14 | Male 0.36
+- Female 0.08 | Male 0.18
 
-I notice that the female percentages are always lower than the male percentages.
-The female percentages seem to never go about 0.10 while the male percentages stay about 0.10.
+I noticed that the female percentages are always lower than the male percentages. While the female percentages seem to
+never go above 0.15, the male percentages stay above 0.15, sometimes significantly so. In fact, the males seem to get hired
+around twice as likely as their female counterparts.
 
 3.
 data/train_candidates_equal.csv
-- Female 0.15| Male 0.28
-- Female 0.4| Male 0.13
-- Female 0.10| Male 0.17
-- Female 0.14| Male 0.20
-- Female 0.10| Male 0.21
+- Female 0.03 | Male 0.22
+- Female 0.03 | Male 0.17
+- Female 0.08 | Male 0.3
+- Female 0.04 | Male 0.29
+- Female 0.06 | Male 0.35
 
 There is still bias in the algorithm. However, in comparison to the other filepath, it is more equal.
 Even though, the male's get hired more percentage wise, the female hire rate increased enough to be close to the male
@@ -52,15 +54,16 @@ Values like these are the constant bias that would occur even though the hiring 
 random attributes to split on after the attribute that we target on. This would have some bias as it would
 have a bias on what the company would prefer on.
 
-5. The reason why the hiring rates change everytime is because it would choose which attribute matters to the hiring
-company. So, if the company values leadership experience first then GPA, then those without the leadership experience
-wouldn't be able to be hired than those with leadership experience. These types of examples would show how our code
-approaches this problem. This occurs as well because the choosing of random attributes after the target would change
-the rates. If we choose the same attribute to split on each time, the bias would not be eliminated because it would
- be bias toward the people who have those qualifications.
+5. The reason why the hiring rates change everytime we build a new classifier is because it randomly chooses which
+attribute matters to the hiring company. So, if the company values leadership experience first then GPA, then those without
+leadership experience even be considered for GPA. These types of examples would show how biased our code is when considering
+various attributes, which in turn changes the hiring rates. If we choose the same attribute to split on each time,
+the bias would not be eliminated because it would be biased toward the people who have those specific qualifications.
 
-6. There is still some evidence of bias because the percentage of male and females are still discrepant.
-The female percentage is still lower even though it is still closer than the other filepaths.
+6. There is still some evidence of hiring bias because the percentage of male and females are still discrepant.
+The male percentages are still consistently higher than the female percentages, even though it is still closer than the
+other filepaths. This descreptancy indicates that leadership experience and last position duration are correlated with
+gender.
 
 7. The limitations of BiasTest is that it would only consider one variable at one time and if the variable
 does not match the recommended decision then it would not consider that attribute again since we cannot
