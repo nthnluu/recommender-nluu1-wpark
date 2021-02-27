@@ -1,7 +1,5 @@
 package sol;
 
-import src.INode;
-
 import java.util.LinkedList;
 
 public class Main {
@@ -14,6 +12,7 @@ public class Main {
         SampleRow carrot = new SampleRow("carrot", "orange", false, false, false);
         SampleRow lettuce = new SampleRow("lettuce", "green", true, false, true);
 
+        SampleRow yellowCarrot = new SampleRow("carrot", "yellow", false, false, false);
         rows.add(spinach);
         rows.add(kale);
         rows.add(peas);
@@ -31,7 +30,7 @@ public class Main {
 
         generator.buildClassifier("likeToEat");
         generator.printTree();
-        System.out.println(generator.lookupRecommendation(carrot));
+        System.out.println(generator.lookupRecommendation(yellowCarrot));
 
     }
 }
