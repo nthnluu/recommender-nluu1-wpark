@@ -42,6 +42,7 @@ public class Node<T extends IAttributeDatum> implements INode {
             }
         }
 
+        // Return the matching edge's value if found, otherwise return the common edge's value
         if (matchingEdge != null) {
             return matchingEdge;
         } else {
