@@ -38,15 +38,15 @@ around twice as likely as their female counterparts.
 
 3.
 data/train_candidates_equal.csv
-- Female 0.03 | Male 0.22
-- Female 0.03 | Male 0.17
-- Female 0.08 | Male 0.3
-- Female 0.04 | Male 0.29
-- Female 0.06 | Male 0.35
+- Female 0.11 | Male 0.24
+- Female 0.11 | Male 0.17
+- Female 0.12 | Male 0.23
+- Female 0.11 | Male 0.25
+- Female 0.1 | Male 0.19
 
-There is still bias in the algorithm. However, in comparison to the other filepath, it is more equal.
-Even though, the male's get hired more percentage wise, the female hire rate increased enough to be close to the male
-ratio. Even in the google sheet the percentage shown was equal. Looking at the google sheet, there are some bias still.
+There is still bias in the algorithm. However, in comparison to the other filepath, it isn't more equal.
+Even though, the male's get hired more percentage wise, the female hire rate seems to be at an increase often to the male
+ratio. However, it does still have the lower percentage while running it a few times. There are some bias still.
 A male got in with a lesser gpa while it seems like women cannot be admitted unless their gpa would be higher than 3.5.
 Values like these are the constant bias that would occur even though the hiring practices seem equal.
 
@@ -70,7 +70,8 @@ does not match the recommended decision then it would not consider that attribut
 access that attribute again. So, if the candidate would have some factor that does not work then it would
 not consider the candidate again. Thus, if there would be a factor of gender, then all females could be considered
 while males would not be considered at all. There are a lot of external factors for a candidate but using this system
-would completely eliminate them. Another reason why it is limiting is that these algorithms should not neglect
+would completely eliminate them because it would not consider them at all.
+Another reason why it is limiting is that these algorithms should not neglect
 important questions of "who benefits and suffers" instead of directing the problem to "diversity and inclusion"
 I do not believe that there are any strengths. One close benefit would be parsing through a dataset to directly
 find candidates that would find what specifically what a company would be searching for. One example that it

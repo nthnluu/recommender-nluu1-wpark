@@ -23,7 +23,11 @@ public class Node<T extends IAttributeDatum> implements INode {
         this.edges = edges;
         this.subset = subset;
     }
-
+    /**
+     * Produce the decision predicted for the given datum
+     * @param attrVals the datum to look into
+     * @return an object of the decision based on the datum
+     */
     @Override
     public Object lookupDecision(IAttributeDatum attrVals) {
         Object attrVal = attrVals.getValueOf(this.attribute);

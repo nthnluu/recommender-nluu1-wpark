@@ -10,7 +10,7 @@ public class SampleRow implements IAttributeDatum {
     boolean likeToEat;
 
     /**
-     * Constructor for SampleRow Class
+     * Constructor for SampleRow Class which is a sample class to use in testing
      * @param name - name attribute
      * @param color - color attribute
      * @param lowCarb - lowCarb attribute
@@ -27,7 +27,7 @@ public class SampleRow implements IAttributeDatum {
 
     /**
      * Gets value of attribute
-     * @param attributeName
+     * @param attributeName the value of attribute given
      * @return the value of attribute
      */
     @Override
@@ -46,7 +46,6 @@ public class SampleRow implements IAttributeDatum {
         } else {
             val = null;
         }
-
         return val;
     }
 }

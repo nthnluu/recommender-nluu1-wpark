@@ -206,6 +206,7 @@ public class Testing {
         SampleRow kale = new SampleRow(null, null, true, true, true);
         //tests on row
         t.checkExpect(spinach.getValueOf("color"), "green");
+        t.checkExpect(kale.getValueOf("color"), null);
     }
 
 

@@ -14,11 +14,20 @@ public class Leaf implements INode {
         this.value = value;
     }
 
+    /**
+     * Produce the decision predicted for the given datum
+     * @param attrVals the datum to look into
+     * @return an object of the decision based on the datum
+     */
     @Override
     public Object lookupDecision(IAttributeDatum attrVals) {
         return value;
     }
 
+    /**
+     * Prints the tree
+     * @param leadspace the input of the value
+     */
     @Override
     public void printNode(String leadspace) {
         System.out.println(leadspace + "*" + value + "*");

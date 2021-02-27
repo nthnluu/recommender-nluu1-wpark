@@ -27,7 +27,12 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
         this.dataset = initTrainingData;
     }
 
-
+    /**
+     * Geerate a tree for the dataset
+     * @param dataset the data set to use
+     * @param targetAttribute the attribute to search for
+     * @return Node to represent the tree
+     */
     private INode generateTree(IAttributeDataset<T> dataset, String targetAttribute) {
         // Remove the target attribute from the dataset's attributes to consider
         LinkedList<String> attributesToConsider = new LinkedList<>(dataset.getAttributes());
@@ -67,6 +72,11 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
         }
     }
 
+    /**
+     * Build a decision Tree to Predict the named attribute
+     * @param targetAttr the attribute to search for
+     * @return a decision tree of the named attribute
+     */
     @Override
     public INode buildClassifier(String targetAttr) {
         INode newTree = this.generateTree(this.dataset, targetAttr);
@@ -74,6 +84,11 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
         return this.decisionTree;
     }
 
+    /**
+     * Produce the decision predicted for the given datum
+     * @param forVals the datum to look into
+     * @return an object of the decision based on the datum
+     */
     @Override
     public Object lookupRecommendation(IAttributeDatum forVals) {
         if (this.decisionTree != null) {
@@ -83,6 +98,9 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
         }
     }
 
+    /**
+     * Prints the tree
+     */
     @Override
     public void printTree() {
         this.decisionTree.printNode("");
