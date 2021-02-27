@@ -13,8 +13,9 @@ public class Node<T extends IAttributeDatum> implements INode {
 
     /**
      * Constructor for the Node Class
-     * @param attr attribute of the node
-     * @param edges edge of the node
+     *
+     * @param attr   attribute of the node
+     * @param edges  edge of the node
      * @param subset subsets of the attribute
      */
     public Node(String attr, LinkedList<Edge> edges, IAttributeDataset<T> subset) {
@@ -26,33 +27,38 @@ public class Node<T extends IAttributeDatum> implements INode {
     @Override
     public Object lookupDecision(IAttributeDatum attrVals) {
         Object attrVal = attrVals.getValueOf(this.attribute);
-
+        Object matchingEdge = null;
+        Object commonEdge = null;
 
         for (Edge edge : edges) {
+            // Find the edge with the matching attribute value
             if (edge.value.equals(attrVal)) {
-                return edge.descendent.lookupDecision(attrVals);
+                matchingEdge = edge.descendent.lookupDecision(attrVals);
             }
-        }
 
-        // the attribute wasn't on an edge, return the edge with the most common value
-        for (Edge edge : edges) {
+            // find edge that matches the most common value for this attribute
             if (edge.value.equals(this.subset.mostCommonValue(this.attribute))) {
-                return edge.descendent.lookupDecision(attrVals);
+                commonEdge = edge.descendent.lookupDecision(attrVals);
             }
         }
 
-        return this.subset.mostCommonValue(this.attribute);
+        if (matchingEdge != null) {
+            return matchingEdge;
+        } else {
+            return commonEdge;
+        }
     }
 
     /**
      * Prints the Node
+     *
      * @param leadspace the input of the value
      */
     @Override
     public void printNode(String leadspace) {
         System.out.println(leadspace + "[Attribute " + this.subset.size() + " rows: " + attribute + "]");
 
-        for (Edge edge: edges) {
+        for (Edge edge : edges) {
             System.out.println(leadspace + "--> (" + edge.value + ")");
             edge.descendent.printNode(leadspace.concat("         "));
         }
