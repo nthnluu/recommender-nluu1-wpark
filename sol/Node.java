@@ -11,7 +11,12 @@ public class Node<T extends IAttributeDatum> implements INode {
     LinkedList<Edge> edges;
     public IAttributeDataset<T> subset;
 
-
+    /**
+     * Constructor for the Node Class
+     * @param attr attribute of the node
+     * @param edges edge of the node
+     * @param subset subsets of the attribute
+     */
     public Node(String attr, LinkedList<Edge> edges, IAttributeDataset<T> subset) {
         this.attribute = attr;
         this.edges = edges;
@@ -32,6 +37,10 @@ public class Node<T extends IAttributeDatum> implements INode {
         return this.subset.mostCommonValue(this.attribute);
     }
 
+    /**
+     * Prints the Node
+     * @param leadspace the input of the value
+     */
     @Override
     public void printNode(String leadspace) {
         System.out.println(leadspace + "[Attribute " + this.subset.size() + " rows: " + attribute + "]");

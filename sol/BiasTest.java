@@ -37,7 +37,7 @@ public class BiasTest {
         /**
          * TODO: change this filepath
          */
-        String filepath = "data/train_candidates_unequal.csv";
+        String filepath = "data/train_candidates_correlated.csv";
 
         RecommenderCSVParser<Candidate> parser = new RecommenderCSVParser<Candidate>();
 
@@ -52,7 +52,7 @@ public class BiasTest {
         }
 
         // TODO : Uncomment the following line.
-         BiasTest.candidates = new ListObjsData<Candidate>(canAttr, allCandidates);
+        BiasTest.candidates = new ListObjsData<Candidate>(canAttr, allCandidates);
     }
 
     /**

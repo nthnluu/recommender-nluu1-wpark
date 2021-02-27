@@ -27,21 +27,39 @@ public class ListObjsData<T extends IAttributeDatum>
         this.attributes = attributes;
     }
 
+    /**
+     * All the attributes in the dataset
+     * @return list of attributes in the dataset
+     */
     @Override
     public LinkedList<String> getAttributes() {
         return this.attributes;
     }
 
+    /**
+     * Checks if all attributes are the same value
+     * @param ofAttribute attribute to search for
+     * @return boolean if valeus are all same
+     */
     @Override
     public boolean allSameValue(String ofAttribute) {
         return this.partition(ofAttribute).size() == 1;
     }
 
+    /**
+     * returns the rows of the dataset
+     * @return int of row size
+     */
     @Override
     public int size() {
         return rows.size();
     }
 
+    /**
+     * Partitions rows into subsets such that each value has same value
+     * @param onAttribute attribute to partition by
+     * @return list of subset depending on the attribute
+     */
     @Override
     public LinkedList<IAttributeDataset<T>> partition(String onAttribute) {
         LinkedList<T> rows = new LinkedList<>(this.rows);
@@ -78,14 +96,31 @@ public class ListObjsData<T extends IAttributeDatum>
         return result;
     }
 
+    /**
+     * Get the value for attribute (common for all rows)
+     * @param ofAttribute attribute to search for
+     * @return the first value of attribute
+     */
     @Override
     public Object getSharedValue(String ofAttribute) {
-        return this.rows.getFirst().getValueOf(ofAttribute);
+        if (this.size() == 0) {
+            return null;
+        } else {
+            return this.rows.getFirst().getValueOf(ofAttribute);
+        }
     }
 
+    /**
+     * get the most common value for attribute
+     * @param ofAttribute attribute to search for
+     * @return the most common value of the attribute
+     */
     @Override
     public Object mostCommonValue(String ofAttribute) {
         // Partition the dataset with the target attribute
+        if (this.size() == 0) {
+            return null;
+        }
         LinkedList<IAttributeDataset<T>> partitioned = this.partition(ofAttribute);
 
         // Keep track of the largest dataset size and the largest dataset

@@ -6,6 +6,10 @@ import src.INode;
 public class Leaf implements INode {
     Object value = null;
 
+    /**
+     * Constructor for the Leaf Class
+     * @param value value of the leaf
+     */
     public Leaf(Object value) {
         this.value = value;
     }

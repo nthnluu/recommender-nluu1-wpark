@@ -36,7 +36,9 @@ public class TreeGenerator<T extends IAttributeDatum> implements IGenerator {
         // Check if there are attributes to consider
         if (attributesToConsider.size() > 0) {
             // Get the next attribute to consider
-            String attrToConsider = attributesToConsider.getFirst();
+            Random random = new Random();
+            Integer randomIndex = random.nextInt(attributesToConsider.size());
+            String attrToConsider = attributesToConsider.get(randomIndex);
 
             // Partition dataset based on current attribute
             LinkedList<IAttributeDataset<T>> subsets = dataset.partition(attrToConsider);

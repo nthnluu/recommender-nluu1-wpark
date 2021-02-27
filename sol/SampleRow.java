@@ -9,6 +9,14 @@ public class SampleRow implements IAttributeDatum {
     boolean highFiber;
     boolean likeToEat;
 
+    /**
+     * Constructor for SampleRow Class
+     * @param name - name attribute
+     * @param color - color attribute
+     * @param lowCarb - lowCarb attribute
+     * @param highFiber - highFiber attribute
+     * @param likeToEat - likeToEat attribute
+     */
     public SampleRow(String name, String color, boolean lowCarb, boolean highFiber, boolean likeToEat) {
         this.name = name;
         this.color = color;
@@ -17,6 +25,11 @@ public class SampleRow implements IAttributeDatum {
         this.likeToEat = likeToEat;
     }
 
+    /**
+     * Gets value of attribute
+     * @param attributeName
+     * @return the value of attribute
+     */
     @Override
     public Object getValueOf(String attributeName) {
         Object val;

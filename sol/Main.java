@@ -26,12 +26,12 @@ public class Main {
         attributes.add("highFiber");
         attributes.add("likeToEat");
 
-
         ListObjsData<SampleRow> dataset = new ListObjsData<SampleRow>(attributes, rows);
         TreeGenerator<SampleRow> generator = new TreeGenerator<SampleRow>(dataset);
 
         generator.buildClassifier("likeToEat");
         generator.printTree();
         System.out.println(generator.lookupRecommendation(carrot));
+
     }
 }
